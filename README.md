@@ -59,3 +59,39 @@ This is **not** a Lean proof and does not establish the paper's analytic,
 prime-number-theorem, or irrationality-criterion inputs. The upstream Lean
 formalizations are separately pinned in the supplement's `lean/README.md`; the
 zeta(2) project explicitly assumes the prime number theorem as an axiom.
+
+## Independent Lean build verification (2026-11-03)
+
+Both upstream Lean projects were independently built from their pinned revisions
+on this machine using Lean 4.35.0-rc4.
+
+**zeta(2)** — `RamanujanMachine/zeta2_four_trajectory_matrices` @ `a0e8ac4`:
+
+    lake build   →  Build completed successfully (9064 jobs)
+
+`zeta2_irrationality_measure` compiles and the axiom audit reports:
+
+    [propext, Classical.choice, Quot.sound, Zeta2ArithRate.prime_number_theorem]
+
+where `Zeta2ArithRate.prime_number_theorem : Filter.Tendsto (fun x =>
+Chebyshev.theta x / x) Filter.atTop (nhds 1)` is an explicit axiom, not a
+`sorry`. The proof is complete modulo PNT.
+
+**zeta(3)** — `RamanujanMachine/zetas_irr` @ `d9d5223`:
+
+    lake build            →  Build completed successfully (9025 jobs)
+    blueprint libraries   →  Build completed successfully (9113 jobs)
+    lake env lean blueprint.lean  →  compiles cleanly
+
+Axiom audit on `ZetasIrr.theorem_1_6` and `ZetasIrr.irrational_combination`:
+
+    [propext, sorryAx, Classical.choice, Quot.sound]
+
+The `sorryAx` originates from `prime_number_theorem` in
+`blueprints/log_Delta_le.lean:131`, which is stated as `sorry`. The proof is
+complete modulo PNT, but PNT is a `sorry` here rather than an axiom.
+
+**Summary:** Neither project has a standard-axioms-only proof. Both explicitly
+depend on the prime number theorem. The zeta(2) project declares it as an axiom;
+the zetas_irr project leaves it as a `sorry`. Neither qualifies for BigO
+Lean Verified status under the three-standard-axioms rule.

@@ -35,5 +35,24 @@
   },
   "checker": "python3 check_bounds.py",
   "evidence_level": "Exact-rational certificate plus reproduced public computational supplement; not a Lean proof and not a proof of the paper's analytic, prime-number-theorem, or irrationality-criterion inputs.",
+  "lean_build_verification": {
+    "date": "2026-11-03",
+    "toolchain": "leanprover/lean4:v4.35.0-rc4",
+    "zeta2": {
+      "repository": "https://github.com/RamanujanMachine/zeta2_four_trajectory_matrices",
+      "commit": "a0e8ac417cddc6ffa88e43cfd68d2b58ea339517",
+      "build": "Build completed successfully (9064 jobs)",
+      "axioms": ["propext", "Classical.choice", "Quot.sound", "Zeta2ArithRate.prime_number_theorem"],
+      "pnt_status": "explicit axiom, not sorry"
+    },
+    "zetas_irr": {
+      "repository": "https://github.com/RamanujanMachine/zetas_irr",
+      "commit": "d9d52233b15383206bc426ba86dadd66f6737b16",
+      "build": "Build completed successfully (9025 jobs) + blueprint libraries (9113 jobs) + blueprint.lean compiles cleanly",
+      "axioms": ["propext", "sorryAx", "Classical.choice", "Quot.sound"],
+      "pnt_status": "sorry in blueprints/log_Delta_le.lean:131"
+    },
+    "conclusion": "Neither project has a standard-axioms-only proof. Both depend on the prime number theorem. Not eligible for BigO Lean Verified under the three-standard-axioms rule."
+  },
   "attribution": "All construction, analytic arguments, and Lean formalization are the cited paper's and RamanujanMachine's. This artifact independently packages the final rational arithmetic and reproduces the supplement's checks."
 }
