@@ -1,0 +1,39 @@
+{
+  "claim": "mu(zeta(2)) < 4.62675 and mu(zeta(3)) < 5.4197, from New Directions in Irrationality, arXiv:2610.27799v1, Theorem 2",
+  "artifact_scope": "Exact rational certificate for the final reported bounds, plus reproduction of the public Python supplement",
+  "source_paper": {
+    "title": "New Directions in Irrationality",
+    "authors": ["Elyasheev Leibtag", "Hila Barkan", "Rotem Kalisch", "Shachar Weinbaum", "Michael Shalyt", "Ido Kaminer"],
+    "arxiv": "2610.27799v1",
+    "date": "2026-10-20"
+  },
+  "supplement": {
+    "repository": "https://github.com/RamanujanMachine/new-directions-in-irrationality",
+    "commit": "3ca026c31396b26c1d804ff8a800b9979d7e4200",
+    "source_manifest": "PASS: 311 source and fixed-data files match the release manifest",
+    "full_run": {
+      "python": "3.12.14",
+      "status": "passed",
+      "jobs": 9,
+      "started_utc": "2026-11-03T09:02:12.216129+00:00",
+      "completed_utc": "2026-11-03T09:04:56.153448+00:00"
+    }
+  },
+  "exact_bounds": {
+    "zeta2": {
+      "mu_exact": "62636575/13537936",
+      "mu_decimal": 4.626744800684536,
+      "delta_exact": "13537936/49098639",
+      "delta_decimal": 0.27572935371996765
+    },
+    "zeta3": {
+      "mu_exact": "3760250/693817",
+      "mu_decimal": 5.4196567682832795,
+      "delta_exact": "693817/3066433",
+      "delta_decimal": 0.22626191408714946
+    }
+  },
+  "checker": "python3 check_bounds.py",
+  "evidence_level": "Exact-rational certificate plus reproduced public computational supplement; not a Lean proof and not a proof of the paper's analytic, prime-number-theorem, or irrationality-criterion inputs.",
+  "attribution": "All construction, analytic arguments, and Lean formalization are the cited paper's and RamanujanMachine's. This artifact independently packages the final rational arithmetic and reproduces the supplement's checks."
+}
